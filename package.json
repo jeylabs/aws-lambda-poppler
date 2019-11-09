@@ -1,0 +1,68 @@
+{
+  "name": "@jeylabs/aws-lambda-poppler",
+  "version": "1.0.0",
+  "description": "Poppler to fit inside AWS Lambda.",
+  "license": "MIT",
+  "repository": "jeylabs/aws-lambda-poppler",
+  "engines": {
+    "node": ">=8.10"
+  },
+  "scripts": {
+    "build": "yarn build:types && babel src --out-dir dist --ignore '**/*.test.ts' --extensions '.ts' --copy-files",
+    "build:types": "tsc --emitDeclarationOnly --declaration --isolatedModules false --declarationDir dist",
+    "coverage": "jest --coverage",
+    "lint": "eslint . --fix",
+    "prepack": "yarn build",
+    "test": "jest src",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "yarn type-check --watch"
+  },
+  "keywords": [
+    "aws lambda",
+    "poppler",
+    "serverless",
+    "pdf"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,json,md,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "@shelf/eslint-config": "^0.10.0",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.6.0",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.19.0",
+    "typescript": "^3.7.2"
+  }
+}
