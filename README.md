@@ -12,10 +12,10 @@ $ yarn add @jeylabs/aws-lambda-poppler
 const {convert} = require('@jeylabs/aws-lambda-poppler');
 
 module.exports.handler = async () => {
-  // assuming there is a document.docx file inside /tmp dir
+  // assuming there is a document.pdf file inside /tmp dir
   // original file will be deleted afterwards
 
-  return convert('document.docx'); // returns [/tmp/document/1.png, /tmp/document/2.png]
+  return convert('document.pdf'); // returns [/tmp/document/1.png, /tmp/document/2.png]
 };
 ```
 
