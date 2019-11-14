@@ -13,7 +13,7 @@
     "coverage": "jest --coverage",
     "lint": "eslint . --fix",
     "prepack": "yarn build",
-    "test": "jest src",
+    "test": "jest src --passWithNoTests",
     "type-check": "tsc --noEmit",
     "type-check:watch": "yarn type-check --watch"
   },
