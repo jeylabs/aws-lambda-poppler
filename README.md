@@ -5,7 +5,7 @@ Inspired by [aws-lambda-libreoffice](https://raw.githubusercontent.com/shelfio/a
 ## Install
 
 ```
-$ yarn add @shelf/aws-lambda-libreoffice
+$ yarn add @jeylabs/aws-lambda-poppler
 ```
 
 ```js
