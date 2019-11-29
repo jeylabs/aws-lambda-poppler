@@ -4,6 +4,14 @@ Poppler execution helpers for AWS Lambda Node.js environment.
 
 ## Install
 
+NPM
+
+```
+$ npm install @jeylabs/aws-lambda-poppler --save
+```
+
+Yarn
+
 ```
 $ yarn add @jeylabs/aws-lambda-poppler
 ```
@@ -37,7 +45,7 @@ You can pass configrations as secound parameter to all methods, Please check the
 - If you want to supply more arguments you can pass your arguments with `options` key.
 
 ```js
-return usePixmap('document.pdf', {
+usePixmap('document.pdf', {
   root: '/tmp',
   type: 'png',
   prefix: 'modified-page'
