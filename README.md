@@ -12,13 +12,13 @@ $ yarn add @jeylabs/aws-lambda-poppler
 
 These are the currently supported methods.
 
-- [x] pdfinfo - `useInfo`
-- [x] pdftohtml - `useHTML`
-- [x] pdftotext - `useText`
-- [x] pdftoppm - `usePixmap`
-- [x] pdftops - `usePostScript`
+- [useInfo](https://linux.die.net/man/1/pdfinfo)
+- [useHTML](https://linux.die.net/man/1/pdftohtml)
+- [useText](https://linux.die.net/man/1/pdftotext)
+- [usePixmap](https://linux.die.net/man/1/pdftoppm)
+- [usePostScript](https://linux.die.net/man/1/pdftops)
 
-## How to
+## How to use
 
 ```js
 const {usePixmap} = require('@jeylabs/aws-lambda-poppler');
@@ -35,9 +35,9 @@ module.exports.handler = async () => {
 
 - [aws-lambda-poppler-layer](https://github.com/jeylabs/aws-lambda-poppler-layer)
 
-# Inspired by
+## Thanks
 
-- [aws-lambda-libreoffice](https://raw.githubusercontent.com/shelfio/aws-lambda-libreoffice)
+- Inspired by [aws-lambda-libreoffice](https://raw.githubusercontent.com/shelfio/aws-lambda-libreoffice)
 
 ## License
 
