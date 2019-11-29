@@ -1,6 +1,6 @@
 {
   "name": "@jeylabs/aws-lambda-poppler",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Poppler to fit inside AWS Lambda.",
   "license": "MIT",
   "repository": "jeylabs/aws-lambda-poppler",
