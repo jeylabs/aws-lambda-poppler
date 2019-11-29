@@ -37,13 +37,11 @@ You can pass configrations as secound parameter to all methods, Please check the
 - If you want to supply more arguments you can pass your arguments with `options` key.
 
 ```js
-module.exports.handler = () => {
-  return usePixmap('document.pdf', {
-    root: '/tmp',
-    type: 'png',
-    prefix: 'modified-page'
-  }); // returns [document/modified-page-1.png, document/modified-page-2.png]
-};
+return usePixmap('document.pdf', {
+  root: '/tmp',
+  type: 'png',
+  prefix: 'modified-page'
+}); // returns [document/modified-page-1.png, document/modified-page-2.png]
 ```
 
 ## See Also
