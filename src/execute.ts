@@ -13,17 +13,18 @@ const defaultCwd: string = '/tmp';
  * @throw
  */
 export function execute(command: string, cwd: string = defaultCwd): string {
-    const commands: Array<string> = [command];
+    const libPath = process.env.LD_LIBRARY_PATH.split(':');
+    libPath.push('/opt/lib64');
 
-    // Make sure working diractory availble to use
+    const commands: Array<string> = [
+        `LD_LIBRARY_PATH=${libPath.join(':')}`,
+        command
+    ];
+
     if (cwd !== defaultCwd) {
         if (!existsSync(cwd)) {
             execSync(`mkdir -p ${cwd}`);
         }
-    }
-
-    if (!process.env.LD_LIBRARY_PATH) {
-        commands.unshift('LD_LIBRARY_PATH="/opt/lib64:/opt/lib"');
     }
 
     if (cwd) {
