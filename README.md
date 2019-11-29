@@ -13,8 +13,8 @@ $ yarn add @jeylabs/aws-lambda-poppler
 These are the currently supported methods.
 
 - [useInfo](https://linux.die.net/man/1/pdfinfo)
-- [useHTML](https://linux.die.net/man/1/pdftohtml)
 - [useText](https://linux.die.net/man/1/pdftotext)
+- [useHTML](https://linux.die.net/man/1/pdftohtml)
 - [usePixmap](https://linux.die.net/man/1/pdftoppm)
 - [usePostScript](https://linux.die.net/man/1/pdftops)
 
@@ -23,10 +23,8 @@ These are the currently supported methods.
 ```js
 const {usePixmap} = require('@jeylabs/aws-lambda-poppler');
 
-module.exports.handler = async () => {
+module.exports.handler = () => {
   // assuming there is a document.pdf file inside /tmp dir
-  // original file will be deleted afterwards
-
   return usePixmap('document.pdf'); // returns [document/page-1.png, document/page-2.png]
 };
 ```
