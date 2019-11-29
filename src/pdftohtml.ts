@@ -6,7 +6,7 @@ import { execute, createParams } from "./execute";
  */
 type Settings = {
     root: string,
-    options: string,
+    options?: string,
 };
 
 /**
@@ -14,14 +14,13 @@ type Settings = {
  */
 const defaultSettings: Settings = {
     root: '/tmp',
-    options: '',
 };
 
 /**
- * Portable Document Format (PDF) to Portable Pixmap (PPM) converter
- * @param {string} filename Name of the file to convert located in root directory
- * @param {Settings} settings pdftohtml options
- * @return {Array<string>} Absolute path to the converted file
+ * Portable Document Format (PDF) to html, xml and png images
+ * @param {String} filename Name of the file to convert located in root directory
+ * @param {Settings} settings pdftohtml settings
+ * @return {Array<String>} Absolute path to the converted file
  * @throws
  */
 export function useHTML(filename: string, settings: Settings): Array<string> {

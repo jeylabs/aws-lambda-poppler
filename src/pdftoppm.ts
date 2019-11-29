@@ -22,9 +22,9 @@ const defaultSettings: Settings = {
 
 /**
  * Portable Document Format (PDF) to Portable Pixmap (PPM) converter
- * @param {string} filename Name of the file to convert located in root directory
+ * @param {String} filename Name of the file to convert located in root directory
  * @param {Settings} settings pdftoppm settings
- * @return {Array<string>} Absolute path to the converted file
+ * @return {Array<String>} Absolute path to the converted file
  * @throws
  */
 export function usePixmap(filename: string, settings: Settings): Array<string> {

@@ -4,27 +4,18 @@ import { execute, createParams } from "./execute";
  * PDFInfo document information extractor
  */
 type Settings = {
-    root: string,
+    root?: string,
     outputString?: boolean,
     options?: string,
 };
 
 /**
- * Default document information extractor
- */
-const defaultSettings: Settings = {
-    root: '/tmp',
-};
-
-/**
  *  Portable Document Format (PDF) document information extractor
- * @param {string} filename Name of the file to convert located in root directory
+ * @param {String} filename Name of the file to convert located in root directory
  * @param {Settings} settings pdfinfo settings
- * @return {object | string} Absolute path to the converted file
+ * @return {Object | String} Absolute path to the converted file
  */
-export function useInfo(filename: string, settings: Settings): Array<string> | string {
-    settings = Object.assign(defaultSettings, settings);
-
+export function useInfo(filename: string, settings: Settings = {}): any {
     const info = execute(`pdfinfo ${createParams([
         filename,
         settings.options
