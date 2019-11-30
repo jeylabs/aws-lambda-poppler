@@ -4,9 +4,9 @@ import {execute} from './execute';
  * Text converter settings
  */
 type Settings = {
-    root?: string;
-    outputFile?: string;
-    options?: Array<string>;
+  root?: string;
+  outputFile?: string;
+  options?: Array<string>;
 };
 
 /**
@@ -17,9 +17,9 @@ type Settings = {
  * @throws
  */
 export function useText(filename: string, settings: Settings = {}): string {
-    const outputFile = settings.outputFile || filename.replace('pdf', 'txt');
+  const outputFile = settings.outputFile || filename.replace('pdf', 'txt');
 
-    execute('pdftotext', [filename, outputFile], settings.options, settings.root);
+  execute('pdftotext', [filename, outputFile], settings.options, settings.root);
 
-    return outputFile;
+  return outputFile;
 }
