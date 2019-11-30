@@ -33,6 +33,6 @@ export function usePixmap(filename: string, settings: Settings): Array<string> {
     const fileLocation = `${settings.root}/${filename}`;
     const outputLocation = `${settings.root}/${filePrefix}`;
 
-    execute('pdftoppm', [fileLocation, settings.prefix, ...settings.options], outputLocation);
+    execute('pdftoppm', [fileLocation, settings.prefix, ...(settings.options || [])], outputLocation);
     return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
 }

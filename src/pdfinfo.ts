@@ -16,8 +16,7 @@ type Settings = {
  * @return {Object | String} Absolute path to the converted file
  */
 export function useInfo(filename: string, settings: Settings = {}): any {
-    const info = execute('pdfinfo', [filename, ...settings.options], settings.root);
-
+    const info = execute('pdfinfo', [filename, ...(settings.options || [])], settings.root);
     if (settings.outputString) {
         return info;
     }

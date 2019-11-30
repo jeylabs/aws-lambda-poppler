@@ -19,6 +19,6 @@ type Settings = {
 export function usePostScript(filename: string, settings: Settings = {}): string {
     const outputFile = settings.outputFile || filename.replace('pdf', 'ps');
 
-    execute('pdftops', [filename, outputFile, ...settings.options], settings.root);
+    execute('pdftops', [filename, outputFile, ...(settings.options || [])], settings.root);
     return outputFile;
 }
