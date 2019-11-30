@@ -1,19 +1,19 @@
 import fs from 'fs';
-import { execute } from "./execute";
+import {execute} from './execute';
 
 /**
  * PPM settings type
  */
 type Settings = {
-    root: string,
-    options?: Array<string>,
+  root: string;
+  options?: Array<string>;
 };
 
 /**
  * Default PPM settings
  */
 const defaultSettings: Settings = {
-    root: '/tmp',
+  root: '/tmp'
 };
 
 /**
@@ -24,12 +24,13 @@ const defaultSettings: Settings = {
  * @throws
  */
 export function useHTML(filename: string, settings: Settings): Array<string> {
-    settings = Object.assign(defaultSettings, settings);
+  settings = Object.assign(defaultSettings, settings);
 
-    const filePrefix = filename.split('.')[0];
-    const fileLocation = `${settings.root}/${filename}`;
-    const outputLocation = `${settings.root}/${filePrefix}`;
+  const filePrefix = filename.split('.')[0];
+  const fileLocation = `${settings.root}/${filename}`;
+  const outputLocation = `${settings.root}/${filePrefix}`;
 
-    execute('pdftohtml', [fileLocation, ...(settings.options || [])], outputLocation);
-    return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
+  execute('pdftohtml', [fileLocation], settings.options, outputLocation);
+
+  return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
 }

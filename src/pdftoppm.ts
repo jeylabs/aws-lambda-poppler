@@ -1,22 +1,22 @@
 import fs from 'fs';
-import { execute } from "./execute";
+import {execute} from './execute';
 
 /**
  * PPM settings type
  */
 type Settings = {
-    root: string,
-    prefix: string,
-    options?: Array<string>,
+  root: string;
+  prefix: string;
+  options?: Array<string>;
 };
 
 /**
  * Default PPM settings
  */
 const defaultSettings: Settings = {
-    root: '/tmp',
-    prefix: 'page',
-    options: ['-png'],
+  root: '/tmp',
+  prefix: 'page',
+  options: ['-png']
 };
 
 /**
@@ -27,12 +27,13 @@ const defaultSettings: Settings = {
  * @throws
  */
 export function usePixmap(filename: string, settings: Settings): Array<string> {
-    settings = Object.assign(defaultSettings, settings);
+  settings = Object.assign(defaultSettings, settings);
 
-    const filePrefix = filename.split('.')[0];
-    const fileLocation = `${settings.root}/${filename}`;
-    const outputLocation = `${settings.root}/${filePrefix}`;
+  const filePrefix = filename.split('.')[0];
+  const fileLocation = `${settings.root}/${filename}`;
+  const outputLocation = `${settings.root}/${filePrefix}`;
 
-    execute('pdftoppm', [fileLocation, settings.prefix, ...(settings.options || [])], outputLocation);
-    return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
+  execute('pdftoppm', [fileLocation, settings.prefix], settings.options, outputLocation);
+
+  return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
 }
