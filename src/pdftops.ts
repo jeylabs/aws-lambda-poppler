@@ -4,9 +4,9 @@ import {execute} from './execute';
  * PostScript settings
  */
 type Settings = {
-  root?: string;
-  outputFile?: string;
-  options?: Array<string>;
+    root?: string;
+    outputFile?: string;
+    options?: Array<string>;
 };
 
 /**
@@ -17,9 +17,9 @@ type Settings = {
  * @throws
  */
 export function usePostScript(filename: string, settings: Settings = {}): string {
-  const outputFile = settings.outputFile || filename.replace('pdf', 'ps');
+    const outputFile = settings.outputFile || filename.replace('pdf', 'ps');
 
-  execute('pdftops', [filename, outputFile], settings.options, settings.root);
+    execute('pdftops', [filename, outputFile], settings.options, settings.root);
 
-  return outputFile;
+    return outputFile;
 }

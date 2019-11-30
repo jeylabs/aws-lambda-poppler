@@ -37,11 +37,11 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
+    "*.js": [
       "eslint --fix",
       "git add"
     ],
-    "*.{html,json,md,yml}": [
+    "*.{ts,json,md,yml}": [
       "prettier --write",
       "git add"
     ]
