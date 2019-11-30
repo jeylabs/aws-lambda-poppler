@@ -1,5 +1,5 @@
 import { existsSync } from 'fs';
-import { spawnSync, CommonOptions, SpawnSyncReturns } from 'child_process';
+import { spawnSync, SpawnSyncReturns } from 'child_process';
 
 /**
  * Default working diractory
@@ -23,14 +23,7 @@ export function execute(command: string, params: Array<string> = [], cwd: string
         }
     }
 
-    const options: CommonOptions = { cwd };
-    if (process.env.AWS_EXECUTION_ENV === 'AWS_Lambda_nodejs8.10') {
-        options.env = {
-            LD_LIBRARY_PATH: '/opt/lib'
-        };
-    }
-
-    const { output, error }: SpawnSyncReturns<Buffer> = spawnSync(command, params, options);
+    const { output, error }: SpawnSyncReturns<Buffer> = spawnSync(command, params, { cwd });
     if (output) {
         return output.toString();
     }
