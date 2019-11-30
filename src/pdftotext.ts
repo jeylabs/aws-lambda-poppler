@@ -1,4 +1,4 @@
-import { execute, createParams } from "./execute";
+import { execute } from "./execute";
 
 /**
  * Text converter settings
@@ -6,7 +6,7 @@ import { execute, createParams } from "./execute";
 type Settings = {
     root?: string,
     outputFile?: string,
-    options?: string,
+    options?: Array<string>,
 };
 
 /**
@@ -19,11 +19,6 @@ type Settings = {
 export function useText(filename: string, settings: Settings = {}): string {
     const outputFile = settings.outputFile || filename.replace('pdf', 'txt');
 
-    execute(`pdftotext ${createParams([
-        filename,
-        outputFile,
-        settings.options
-    ])}`, settings.root);
-
+    execute('pdftotext', [filename, outputFile, ...settings.options], settings.root);
     return outputFile;
 }

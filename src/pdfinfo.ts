@@ -1,4 +1,4 @@
-import { execute, createParams } from "./execute";
+import { execute } from "./execute";
 
 /**
  * PDFInfo document information extractor
@@ -6,7 +6,7 @@ import { execute, createParams } from "./execute";
 type Settings = {
     root?: string,
     outputString?: boolean,
-    options?: string,
+    options?: Array<string>,
 };
 
 /**
@@ -16,10 +16,7 @@ type Settings = {
  * @return {Object | String} Absolute path to the converted file
  */
 export function useInfo(filename: string, settings: Settings = {}): any {
-    const info = execute(`pdfinfo ${createParams([
-        filename,
-        settings.options
-    ])}`, settings.root);
+    const info = execute('pdfinfo', [filename, ...settings.options], settings.root);
 
     if (settings.outputString) {
         return info;

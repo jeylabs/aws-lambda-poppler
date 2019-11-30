@@ -1,4 +1,4 @@
-import { execute, createParams } from "./execute";
+import { execute } from "./execute";
 
 /**
  * PostScript settings
@@ -6,7 +6,7 @@ import { execute, createParams } from "./execute";
 type Settings = {
     root?: string,
     outputFile?: string,
-    params?: string,
+    options?: Array<string>,
 };
 
 /**
@@ -19,11 +19,6 @@ type Settings = {
 export function usePostScript(filename: string, settings: Settings = {}): string {
     const outputFile = settings.outputFile || filename.replace('pdf', 'ps');
 
-    execute(`pdftops ${createParams([
-        filename,
-        outputFile,
-        settings.params
-    ])}`, settings.root);
-
+    execute('pdftops', [filename, outputFile, ...settings.options], settings.root);
     return outputFile;
 }

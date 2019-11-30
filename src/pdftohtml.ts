@@ -1,12 +1,12 @@
 import fs from 'fs';
-import { execute, createParams } from "./execute";
+import { execute } from "./execute";
 
 /**
  * PPM settings type
  */
 type Settings = {
     root: string,
-    options?: string,
+    options?: Array<string>,
 };
 
 /**
@@ -30,10 +30,6 @@ export function useHTML(filename: string, settings: Settings): Array<string> {
     const fileLocation = `${settings.root}/${filename}`;
     const outputLocation = `${settings.root}/${filePrefix}`;
 
-    execute(`pdftohtml ${createParams([
-        fileLocation,
-        settings.options
-    ])}`, outputLocation);
-
+    execute('pdftohtml', [fileLocation, ...settings.options], outputLocation);
     return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
 }

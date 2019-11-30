@@ -1,5 +1,5 @@
 import { existsSync } from 'fs';
-import { execSync } from 'child_process';
+import { spawnSync, CommonOptions, SpawnSyncReturns } from 'child_process';
 
 /**
  * Default working diractory
@@ -9,40 +9,31 @@ const defaultCwd: string = '/tmp';
 /**
  * Execute binany commands
  * @param {String} command 
+ * @param {Array} params 
  * @return {String}
  * @throw
  */
-export function execute(command: string, cwd: string = defaultCwd): string {
-    const libPath = process.env.LD_LIBRARY_PATH.split(':');
-    libPath.push('/opt/lib64');
-
-    const commands: Array<string> = [
-        `LD_LIBRARY_PATH=${libPath.join(':')}`,
-        command
-    ];
-
+export function execute(command: string, params: Array<string> = [], cwd: string = defaultCwd): string {
     if (cwd !== defaultCwd) {
         if (!existsSync(cwd)) {
-            execSync(`mkdir -p ${cwd}`);
+            const { error }: SpawnSyncReturns<string> = spawnSync('mkdir', [cwd, '-p']);
+            if (error) {
+                throw error;
+            }
         }
     }
 
-    if (cwd) {
-        commands.unshift(`cd ${cwd}`);
+    const options: CommonOptions = { cwd };
+    if (process.env.AWS_EXECUTION_ENV === 'AWS_Lambda_nodejs8.10') {
+        options.env = {
+            LD_LIBRARY_PATH: '/opt/lib'
+        };
     }
 
-    try {
-        return execSync(commands.join(' && ')).toString('utf8');
-    } catch (error) {
-        throw new Error(error.toString('utf8'));
+    const { output, error }: SpawnSyncReturns<Buffer> = spawnSync(command, params, options);
+    if (output) {
+        return output.toString();
     }
-}
 
-/**
- * Create parameters
- * @param {String} command 
- * @return {String}
- */
-export function createParams(parameters: Array<string>): string {
-    return parameters.filter(Boolean).join(' ');
+    throw error;
 }

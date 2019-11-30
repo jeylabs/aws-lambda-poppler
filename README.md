@@ -42,13 +42,13 @@ module.exports.handler = () => {
 You can pass configrations as secound parameter to all methods, Please check the source to check supported options.
 
 - Default working diractory is `/tmp`, you can modify it by passing your value with `root` key.
-- If you want to supply more arguments you can pass your arguments with `options` key.
+- If you want to supply more arguments you can pass your argument list with `options` key.
 
 ```js
 usePixmap('document.pdf', {
   root: '/tmp',
-  type: 'png',
-  prefix: 'modified-page'
+  prefix: 'modified-page',
+  options: ['-png', '-freetype no']
 }); // returns [document/modified-page-1.png, document/modified-page-2.png]
 ```
 

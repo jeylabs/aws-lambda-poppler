@@ -1,14 +1,13 @@
 import fs from 'fs';
-import { execute, createParams } from "./execute";
+import { execute } from "./execute";
 
 /**
  * PPM settings type
  */
 type Settings = {
     root: string,
-    type: string,
     prefix: string,
-    options?: string,
+    options?: Array<string>,
 };
 
 /**
@@ -16,8 +15,8 @@ type Settings = {
  */
 const defaultSettings: Settings = {
     root: '/tmp',
-    type: 'png',
-    prefix: 'page'
+    prefix: 'page',
+    options: ['-png'],
 };
 
 /**
@@ -34,12 +33,6 @@ export function usePixmap(filename: string, settings: Settings): Array<string> {
     const fileLocation = `${settings.root}/${filename}`;
     const outputLocation = `${settings.root}/${filePrefix}`;
 
-    execute(`pdftoppm ${createParams([
-        fileLocation,
-        settings.prefix,
-        `-${settings.type}`,
-        settings.options
-    ])}`, outputLocation);
-
+    execute('pdftoppm', [fileLocation, settings.prefix, ...settings.options], outputLocation);
     return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
 }
