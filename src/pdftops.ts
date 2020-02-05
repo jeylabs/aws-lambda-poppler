@@ -10,7 +10,7 @@ type Settings = {
 };
 
 /**
- * Portable Document Format (PDF) to PostScript converter
+ * Converts PDF files to Postscript format.
  * @param {String} filename Name of the file to convert located in root directory
  * @param {Settings} settings pdfpdftopstops settings
  * @return {String} Absolute path to the converted file

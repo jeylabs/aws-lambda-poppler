@@ -10,7 +10,7 @@ type Settings = {
 };
 
 /**
- *  Portable Document Format (PDF) document information extractor
+ *  Prints the contents of the 'Info' dictionary (plus some other useful information) from a PDF file.
  * @param {String} filename Name of the file to convert located in root directory
  * @param {Settings} settings pdfinfo settings
  * @return {Object | String} Absolute path to the converted file

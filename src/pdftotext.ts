@@ -10,7 +10,7 @@ type Settings = {
 };
 
 /**
- * Portable Document Format (PDF) to text converter
+ * Converts PDF files to plain text.
  * @param {String} filename Name of the file to convert located in root directory
  * @param {Settings} settings pdftotext settings
  * @return {String} Absolute path to the converted file

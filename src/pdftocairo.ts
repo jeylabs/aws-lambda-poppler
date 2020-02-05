@@ -20,20 +20,20 @@ const defaultSettings: Settings = {
 };
 
 /**
- * Converts PDF files to PBM, PGM and PPM formats.
+ * converts a PDF file to one of several formats (PNG, JPEG, PDF, PS, EPS, SVG) using the cairo output device of the poppler library.
  * @param {String} filename Name of the file to convert located in root directory
  * @param {Settings} settings pdftoppm settings
  * @return {Array<String>} Absolute path to the converted file
  * @throws
  */
-export function usePixmap(filename: string, settings: Settings): Array<string> {
+export function useCairo(filename: string, settings: Settings): Array<string> {
   settings = Object.assign(defaultSettings, settings);
 
   const filePrefix = filename.split('.')[0];
   const fileLocation = `${settings.root}/${filename}`;
   const outputLocation = `${settings.root}/${filePrefix}`;
 
-  execute('pdftoppm', [fileLocation, settings.prefix], settings.options, outputLocation);
+  execute('pdftocairo', [fileLocation, settings.prefix], settings.options, outputLocation);
 
   return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
 }

@@ -17,7 +17,7 @@ const defaultSettings: Settings = {
 };
 
 /**
- * Portable Document Format (PDF) to html, xml and png images
+ * Converts a PDF file to HTML.
  * @param {String} filename Name of the file to convert located in root directory
  * @param {Settings} settings pdftohtml settings
  * @return {Array<String>} Absolute path to the converted file
