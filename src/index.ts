@@ -1,4 +1,5 @@
 export * from './execute';
+export * from './pdffonts';
 export * from './pdfinfo';
 export * from './pdftocairo';
 export * from './pdftohtml';

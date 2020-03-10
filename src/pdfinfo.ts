@@ -15,7 +15,10 @@ type Settings = {
  * @param {Settings} settings pdfinfo settings
  * @return {Object | String} Absolute path to the converted file
  */
-export function useInfo(filename: string, settings: Settings = {}): any {
+export function useInfo(
+  filename: string,
+  settings: Settings = {}
+): {[key: string]: string} | string {
   const info = execute('pdfinfo', [filename], settings.options, settings.root);
 
   if (settings.outputString) {
@@ -25,7 +28,7 @@ export function useInfo(filename: string, settings: Settings = {}): any {
   return info
     .split('\n')
     .filter(Boolean)
-    .reduce((reducer: any, item: string) => {
+    .reduce((reducer: {[key: string]: string}, item: string) => {
       const [key, value]: Array<string> = item.split(':');
 
       if (key) {

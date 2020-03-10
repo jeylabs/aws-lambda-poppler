@@ -2,7 +2,7 @@ import fs from 'fs';
 import {execute} from './execute';
 
 /**
- * PPM settings type
+ * HTML settings type
  */
 type Settings = {
   root: string;
@@ -10,7 +10,7 @@ type Settings = {
 };
 
 /**
- * Default PPM settings
+ * Default HTML settings
  */
 const defaultSettings: Settings = {
   root: '/tmp'

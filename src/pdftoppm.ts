@@ -1,5 +1,5 @@
-import fs from 'fs';
 import {execute} from './execute';
+import {listFiles} from './helpers';
 
 /**
  * PPM settings type
@@ -35,5 +35,5 @@ export function usePixmap(filename: string, settings: Settings): Array<string> {
 
   execute('pdftoppm', [fileLocation, settings.prefix], settings.options, outputLocation);
 
-  return fs.readdirSync(outputLocation).map(item => `${filePrefix}/${item}`);
+  return listFiles(outputLocation, filePrefix);
 }

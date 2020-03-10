@@ -20,6 +20,7 @@ $ yarn add @jeylabs/aws-lambda-poppler
 
 These are the methods currently supported.
 
+- [useFonts](https://linux.die.net/man/1/pdffonts)
 - [useInfo](https://linux.die.net/man/1/pdfinfo)
 - [useText](https://linux.die.net/man/1/pdftotext)
 - [useHTML](https://linux.die.net/man/1/pdftohtml)
