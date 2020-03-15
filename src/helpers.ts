@@ -15,15 +15,20 @@ export function listFiles(location: string, filePrefix: string): Array<string> {
  * Convert console.table output to object.
  * @param {String} output Console.table output.
  * @return {Array<{[key: string]: string}> | null} Output
+ * @return {Array<String>} output skipWords
  * @throws
  */
-export function parseTable(output: string): Array<{[key: string]: string}> | null {
+export function parseTable(
+  output: string,
+  skipWords: Array<string> = []
+): Array<{[key: string]: string}> | null {
+  skipWords = ['warning', 'error', ...skipWords];
+  const skipWorldsExp = new RegExp(skipWords.join('|'));
+
   const [keys, ...values] = output
     .split('\n')
     .map((str: string) => str.replace(/[^a-zA-Z0-9 ]/g, ''))
-    .filter((str: string) => {
-      return str.trim() && str.replace(/[^a-zA-Z ]/g, '') && !str.includes('warning');
-    });
+    .filter((str: string) => str.trim() && !skipWorldsExp.test(str.toLowerCase()));
 
   if (!keys || !values) {
     return null;
