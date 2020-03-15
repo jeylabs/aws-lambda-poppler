@@ -8,6 +8,7 @@ type Settings = {
   root?: string;
   outputString?: boolean;
   options?: Array<string>;
+  skipWords?: Array<string>;
 };
 
 /**
@@ -26,5 +27,5 @@ export function useFonts(
     return fonts;
   }
 
-  return parseTable(fonts);
+  return parseTable(fonts, settings.skipWords);
 }
