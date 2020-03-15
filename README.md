@@ -2,6 +2,8 @@
 
 Poppler execution helpers for AWS Lambda Node.js environment.
 
+![Release](https://github.com/jeylabs/aws-lambda-poppler/workflows/Release/badge.svg)
+
 ## Install
 
 NPM
