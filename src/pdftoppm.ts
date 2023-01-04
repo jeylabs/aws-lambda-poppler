@@ -5,8 +5,8 @@ import {listFiles} from './helpers';
  * PPM settings type
  */
 type Settings = {
-  root: string;
-  prefix: string;
+  root?: string;
+  prefix?: string;
   options?: Array<string>;
 };
 

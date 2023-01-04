@@ -5,7 +5,7 @@ import {execute} from './execute';
  * HTML settings type
  */
 type Settings = {
-  root: string;
+  root?: string;
   options?: Array<string>;
 };
 
